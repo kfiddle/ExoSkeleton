@@ -10,4 +10,8 @@ body {
     grid-template-rows: auto;
 }
 
+#form input {
+    height: 30px;
+}
+
 

@@ -37,29 +37,36 @@ public class PersonController {
 
     @PostMapping("/add-person")
     public String displayAddEmployeeForm(@RequestParam String firstName, String lastName, String email, int age, String company, int height, int weight, int waist, int gender,
-                                         int yearsAtCurrentJob, int overallWorkEffort,
+                                         int years, int overallEffort,
                                          int typicalLiftEffort, int heaviestLiftEffort, int rightShoulderDiscomfort, int leftShoulderDiscomfort,
                                          int upperBackDiscomfort, int lowerBackDiscomfort, int rightHipDiscomfort, int leftHipDiscomfort,
                                          int rightThighDiscomfort, int leftThighDiscomfort, int rightKneeDiscomfort, int leftKneeDiscomfort) {
 
         String newLastName = lastName;
 
-        if (companyRepo.findByCompanyName(company) == null){
+        if (companyRepo.findByCompanyName(company) == null) {
             Company companyToAdd = new Company(company);
             companyRepo.save(companyToAdd);
 
             Person personToAdd = new Person(firstName, lastName, companyToAdd, email, height, weight, waist,
-            age, gender, yearsAtCurrentJob, overallWorkEffort, typicalLiftEffort,
-            heaviestLiftEffort, rightShoulderDiscomfort, leftShoulderDiscomfort, upperBackDiscomfort,
-            lowerBackDiscomfort, rightHipDiscomfort, leftHipDiscomfort, rightThighDiscomfort,
-            leftThighDiscomfort, rightKneeDiscomfort, leftKneeDiscomfort);
+                    age, gender, years, overallEffort, typicalLiftEffort,
+                    heaviestLiftEffort, rightShoulderDiscomfort, leftShoulderDiscomfort, upperBackDiscomfort,
+                    lowerBackDiscomfort, rightHipDiscomfort, leftHipDiscomfort, rightThighDiscomfort,
+                    leftThighDiscomfort, rightKneeDiscomfort, leftKneeDiscomfort);
 
             personRepo.save(personToAdd);
             newLastName = personToAdd.getLastName();
         }
 
         return "redirect:/employee/" + newLastName;
-
     }
+
+    @RequestMapping("/allPeople")
+    public String displayAllUsersInDatabase(Model model) {
+        model.addAttribute("allPeople", personRepo.findAll());
+        return "allPeople";
+    }
+
+
 }
 

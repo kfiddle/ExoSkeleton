@@ -148,6 +148,31 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public Person(String firstName, String lastName, String email, int height, int weight, int waist, int age, int gender, int yearsAtCurrentJob, int overallWorkEffort, int typicalLiftEffort, int heaviestLiftEffort, int rightShoulderDiscomfort, int leftShoulderDiscomfort, int upperBackDiscomfort, int lowerBackDiscomfort, int rightHipDiscomfort, int leftHipDiscomfort, int rightThighDiscomfort, int leftThighDiscomfort, int rightKneeDiscomfort, int leftKneeDiscomfort) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.height = height;
+        this.weight = weight;
+        this.waist = waist;
+        this.age = age;
+        this.gender = gender;
+        this.yearsAtCurrentJob = yearsAtCurrentJob;
+        this.overallWorkEffort = overallWorkEffort;
+        this.typicalLiftEffort = typicalLiftEffort;
+        this.heaviestLiftEffort = heaviestLiftEffort;
+        this.rightShoulderDiscomfort = rightShoulderDiscomfort;
+        this.leftShoulderDiscomfort = leftShoulderDiscomfort;
+        this.upperBackDiscomfort = upperBackDiscomfort;
+        this.lowerBackDiscomfort = lowerBackDiscomfort;
+        this.rightHipDiscomfort = rightHipDiscomfort;
+        this.leftHipDiscomfort = leftHipDiscomfort;
+        this.rightThighDiscomfort = rightThighDiscomfort;
+        this.leftThighDiscomfort = leftThighDiscomfort;
+        this.rightKneeDiscomfort = rightKneeDiscomfort;
+        this.leftKneeDiscomfort = leftKneeDiscomfort;
+    }
+
     public Person(String firstName, String lastName, Company company, String email, int height, int weight, int waist, int age, int gender, int yearsAtCurrentJob, int overallWorkEffort, int typicalLiftEffort, int heaviestLiftEffort, int rightShoulderDiscomfort, int leftShoulderDiscomfort, int upperBackDiscomfort, int lowerBackDiscomfort, int rightHipDiscomfort, int leftHipDiscomfort, int rightThighDiscomfort, int leftThighDiscomfort, int rightKneeDiscomfort, int leftKneeDiscomfort) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -172,5 +197,5 @@ public class Person {
         this.leftThighDiscomfort = leftThighDiscomfort;
         this.rightKneeDiscomfort = rightKneeDiscomfort;
         this.leftKneeDiscomfort = leftKneeDiscomfort;
-    }
+
 }

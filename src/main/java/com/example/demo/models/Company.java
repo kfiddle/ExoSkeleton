@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
@@ -36,6 +37,14 @@ public class Company {
     public Company(String companyName){
         this.companyName = companyName;
     }
+
+    public Company(String companyName, Person...employees){
+        this.companyName = companyName;
+        this.employees = Arrays.asList(employees);
+    }
+
+
+
 
 
 }

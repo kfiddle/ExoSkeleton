@@ -1,0 +1,13 @@
+
+body {
+    background-color: darkmagenta;
+}
+
+
+#form {
+    width: 40%;
+    display: grid;
+    grid-template-rows: auto;
+}
+
+

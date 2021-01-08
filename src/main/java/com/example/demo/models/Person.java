@@ -50,11 +50,11 @@ public class Person {
         return lastName;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
-    public Company getCompany(){
+    public Company getCompany() {
         return company;
     }
 
@@ -134,10 +134,9 @@ public class Person {
         return leftKneeDiscomfort;
     }
 
-    public Collection<Report> getReports(){
+    public Collection<Report> getReports() {
         return reports;
     }
-
 
 
     public Person() {
@@ -198,4 +197,5 @@ public class Person {
         this.rightKneeDiscomfort = rightKneeDiscomfort;
         this.leftKneeDiscomfort = leftKneeDiscomfort;
 
+    }
 }

@@ -6,6 +6,7 @@ import com.example.demo.repositories.CompanyRepository;
 import com.example.demo.repositories.PersonRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,20 +27,26 @@ public class PersonController {
         return "new-employee-submission";
     }
 
-    @RequestMapping("/employee-submitted")
-    public String displayThankYouPageForSubmission(Model model) {
+    @RequestMapping("/employee/{lastName}")
+    public String displayThankYouPageForSubmission(@PathVariable String lastName, Model model) {
+        Person person = personRepo.findByLastName(lastName);
+        model.addAttribute("person", person);
+        return "newEmployeePage";
 
     }
 
     @PostMapping("/add-person")
-    public String displayAddEmployeeForm(@RequestParam String firstName, String lastName, String email, int age, String company, int height, int weight, int waist, int gender, int years, int overallEffort,
+    public String displayAddEmployeeForm(@RequestParam String firstName, String lastName, String email, int age, String company, int height, int weight, int waist, int gender,
                                          int yearsAtCurrentJob, int overallWorkEffort,
                                          int typicalLiftEffort, int heaviestLiftEffort, int rightShoulderDiscomfort, int leftShoulderDiscomfort,
                                          int upperBackDiscomfort, int lowerBackDiscomfort, int rightHipDiscomfort, int leftHipDiscomfort,
                                          int rightThighDiscomfort, int leftThighDiscomfort, int rightKneeDiscomfort, int leftKneeDiscomfort) {
 
-        if (companyRepo.findByCompanyName(company) == null)){
+        String newLastName = lastName;
+
+        if (companyRepo.findByCompanyName(company) == null){
             Company companyToAdd = new Company(company);
+            companyRepo.save(companyToAdd);
 
             Person personToAdd = new Person(firstName, lastName, companyToAdd, email, height, weight, waist,
             age, gender, yearsAtCurrentJob, overallWorkEffort, typicalLiftEffort,
@@ -48,10 +55,11 @@ public class PersonController {
             leftThighDiscomfort, rightKneeDiscomfort, leftKneeDiscomfort);
 
             personRepo.save(personToAdd);
-                return "thankYouPage";
+            newLastName = personToAdd.getLastName();
+        }
 
+        return "redirect:/employee/" + newLastName;
 
-            }
     }
 }
 

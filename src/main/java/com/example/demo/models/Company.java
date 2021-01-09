@@ -30,6 +30,15 @@ public class Company {
         return employees;
     }
 
+    public Person findByFirstAndLastName(String firstName, String lastName){
+        Person personToFind = new Person();
+        for (Person person : employees) {
+            if (person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
+                personToFind = person;
+            }
+        } return personToFind;
+    }
+
 
     public Company(){
     }

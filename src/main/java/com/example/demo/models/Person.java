@@ -202,6 +202,12 @@ public class Person {
         this.leftThighDiscomfort = leftThighDiscomfort;
         this.rightKneeDiscomfort = rightKneeDiscomfort;
         this.leftKneeDiscomfort = leftKneeDiscomfort;
-
     }
+
+    public void addReport(Report report) {
+        reports.add(report);
+    }
+
+
+
 }

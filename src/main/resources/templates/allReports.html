@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Reports</title>
+</head>
+<body>
+
+<ul th:each="report : ${allReports}">
+    <li th:text="${report.person.firstName}"></li>
+    <li th:text="${report.person.lastName}"></li>
+    <li th:text="${report.reliableAndDurable}"></li>
+    <li th:text="${report.comfortDuringBreaks}"></li>
+
+
+</ul>
+
+</body>
+</html>

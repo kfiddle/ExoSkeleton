@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Controller
 public class PersonController {
@@ -22,28 +24,40 @@ public class PersonController {
     @Resource
     private CompanyRepository companyRepo;
 
-    @RequestMapping("/new-employee-submission")
+    @RequestMapping("/new-employee-long")
     public String displayFormFormNewEmployeeSubmission() {
-        return "new-employee-submission";
+        return "markNewPersonSubmission";
     }
+
+    @RequestMapping("/new-employee-short")
+    public String displayShortNewPersonForm() {
+        return "newPersonShortVersion";
+    }
+
 
     @RequestMapping("/employee/{lastName}/{id}")
     public String displayThankYouPageForSubmission(@PathVariable Long id, Model model) {
         Person person = personRepo.findById(id).get();
         model.addAttribute("person", person);
         return "newEmployeePage";
-
     }
 
-    @PostMapping("/add-person")
-    public String displayAddEmployeeForm(@RequestParam String firstName, String lastName, String email, int age, String company, int height, int weight, int waist, int gender,
-                                         int years, int overallEffort,
-                                         int typicalLiftEffort, int heaviestLiftEffort, int rightShoulderDiscomfort, int leftShoulderDiscomfort,
-                                         int upperBackDiscomfort, int lowerBackDiscomfort, int rightHipDiscomfort, int leftHipDiscomfort,
-                                         int rightThighDiscomfort, int leftThighDiscomfort, int rightKneeDiscomfort, int leftKneeDiscomfort) {
 
+    @PostMapping("/add-person")
+    public String displayAddEmployeeForm(@RequestParam String firstName, String lastName, String company, String email,
+                                         int age, int height, int weight, int waist, int gender, int years, int overallEffort, int typicalLiftEffort, int heaviestLiftEffort,
+                                         int rightShoulderDiscomfort, int leftShoulderDiscomfort, int upperBackDiscomfort, int lowerBackDiscomfort, int rightHipDiscomfort,
+                                         int leftHipDiscomfort, int rightThighDiscomfort, int leftThighDiscomfort, int rightKneeDiscomfort, int leftKneeDiscomfort) {
+
+        Person personToAdd;
         String newLastName = lastName;
         Company foundCompany;
+        String returnStatement = "redirect:/employee/" + newLastName + "/";
+
+        if (email == null && company == null) {
+            personToAdd = new Person(firstName, lastName);
+            return returnStatement + personToAdd.getId();
+        }
 
         if (companyRepo.findByCompanyName(company) == null) {
             foundCompany = new Company(company);
@@ -51,7 +65,9 @@ public class PersonController {
         } else {
             foundCompany = companyRepo.findByCompanyName(company);
         }
-        Person personToAdd = new Person(firstName, lastName, foundCompany, email, height, weight, waist,
+
+
+        personToAdd = new Person(firstName, lastName, foundCompany, email, height, weight, waist,
                 age, gender, years, overallEffort, typicalLiftEffort,
                 heaviestLiftEffort, rightShoulderDiscomfort, leftShoulderDiscomfort, upperBackDiscomfort,
                 lowerBackDiscomfort, rightHipDiscomfort, leftHipDiscomfort, rightThighDiscomfort,
@@ -59,7 +75,7 @@ public class PersonController {
 
         personRepo.save(personToAdd);
         newLastName = personToAdd.getLastName();
-        return "redirect:/employee/" + newLastName + "/" + personToAdd.getId();
+        return returnStatement + personToAdd.getId();
     }
 
     @RequestMapping("/all-people")

@@ -38,8 +38,6 @@ public class ReportController {
     }
 
 
-
-
     @PostMapping("/add-report")
     public String addABiMonthlyReport(@RequestParam String firstName, String lastName, String company, int durationOfUse, int likelyToRecommend, int whatIfYouCouldntUse,
                                       int effortDuringADayWithSuit, int effortWhileWearing, int effortDuringHeaviestLift,

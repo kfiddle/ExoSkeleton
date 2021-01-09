@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>All People In Database</title>
 </head>
 <body>
 
-<ul th:each></ul>
+<p th:text="${allPeople.size()}"></p>
+<ul th:each = "person : ${allPeople}">
+    <li th:text="${person.lastName}"></li>
+    <li th:text="${person.firstName}"></li>
+
+</ul>
 
 
 </body>

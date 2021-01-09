@@ -61,7 +61,7 @@ public class PersonController {
         return "redirect:/employee/" + newLastName;
     }
 
-    @RequestMapping("/allPeople")
+    @RequestMapping("/all-people")
     public String displayAllUsersInDatabase(Model model) {
         model.addAttribute("allPeople", personRepo.findAll());
         return "allPeople";

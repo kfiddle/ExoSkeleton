@@ -147,6 +147,12 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public Person(String firstName, String lastName, Company company){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.company = company;
+    }
+
     public Person(String firstName, String lastName, String email, int height, int weight, int waist, int age, int gender, int yearsAtCurrentJob, int overallWorkEffort, int typicalLiftEffort, int heaviestLiftEffort, int rightShoulderDiscomfort, int leftShoulderDiscomfort, int upperBackDiscomfort, int lowerBackDiscomfort, int rightHipDiscomfort, int leftHipDiscomfort, int rightThighDiscomfort, int leftThighDiscomfort, int rightKneeDiscomfort, int leftKneeDiscomfort) {
         this.firstName = firstName;
         this.lastName = lastName;

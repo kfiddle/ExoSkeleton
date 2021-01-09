@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -382,7 +383,7 @@ public class Report {
         this.whatDoYouHateAboutIt = whatDoYouHateAboutIt;
         this.additionalNotes = additionalNotes;
 
-
+        this.listOfAttributes = new ArrayList<>();
 
         this.listOfAttributes.add(durationOfUse);
         this.listOfAttributes.add(likelyToRecommend);

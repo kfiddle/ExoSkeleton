@@ -11,6 +11,7 @@
 <ul th:each = "person : ${allPeople}">
     <li th:text="${person.lastName}"></li>
     <li th:text="${person.firstName}"></li>
+    <li th:text="${person.company.companyName}"></li>
 
 </ul>
 

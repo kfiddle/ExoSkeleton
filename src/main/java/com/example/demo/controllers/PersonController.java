@@ -27,9 +27,9 @@ public class PersonController {
         return "new-employee-submission";
     }
 
-    @RequestMapping("/employee/{lastName}")
-    public String displayThankYouPageForSubmission(@PathVariable String lastName, Model model) {
-        Person person = personRepo.findByLastName(lastName);
+    @RequestMapping("/employee/{lastName}/{id}")
+    public String displayThankYouPageForSubmission(@PathVariable Long id, Model model) {
+        Person person = personRepo.findById(id).get();
         model.addAttribute("person", person);
         return "newEmployeePage";
 
@@ -43,22 +43,23 @@ public class PersonController {
                                          int rightThighDiscomfort, int leftThighDiscomfort, int rightKneeDiscomfort, int leftKneeDiscomfort) {
 
         String newLastName = lastName;
+        Company foundCompany;
 
         if (companyRepo.findByCompanyName(company) == null) {
-            Company companyToAdd = new Company(company);
-            companyRepo.save(companyToAdd);
-
-            Person personToAdd = new Person(firstName, lastName, companyToAdd, email, height, weight, waist,
-                    age, gender, years, overallEffort, typicalLiftEffort,
-                    heaviestLiftEffort, rightShoulderDiscomfort, leftShoulderDiscomfort, upperBackDiscomfort,
-                    lowerBackDiscomfort, rightHipDiscomfort, leftHipDiscomfort, rightThighDiscomfort,
-                    leftThighDiscomfort, rightKneeDiscomfort, leftKneeDiscomfort);
-
-            personRepo.save(personToAdd);
-            newLastName = personToAdd.getLastName();
+            foundCompany = new Company(company);
+            companyRepo.save(foundCompany);
+        } else {
+            foundCompany = companyRepo.findByCompanyName(company);
         }
+        Person personToAdd = new Person(firstName, lastName, foundCompany, email, height, weight, waist,
+                age, gender, years, overallEffort, typicalLiftEffort,
+                heaviestLiftEffort, rightShoulderDiscomfort, leftShoulderDiscomfort, upperBackDiscomfort,
+                lowerBackDiscomfort, rightHipDiscomfort, leftHipDiscomfort, rightThighDiscomfort,
+                leftThighDiscomfort, rightKneeDiscomfort, leftKneeDiscomfort);
 
-        return "redirect:/employee/" + newLastName;
+        personRepo.save(personToAdd);
+        newLastName = personToAdd.getLastName();
+        return "redirect:/employee/" + newLastName + "/" + personToAdd.getId();
     }
 
     @RequestMapping("/all-people")

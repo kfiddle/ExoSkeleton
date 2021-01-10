@@ -44,7 +44,6 @@ function loadForms() {
 
 function submitForm() {
 
-
     for (let i = 0; i < nameAttributes.length; i++) {
         let addedElement = document.getElementById(nameAttributes[i]);
         nameInputsById.push(addedElement);
@@ -59,8 +58,6 @@ function submitForm() {
             nameInputsById[i].value = 0;
         }
     }
-
-
 
     let formData = {
 

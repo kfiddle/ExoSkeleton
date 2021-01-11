@@ -1,0 +1,22 @@
+
+body {
+    background-color: lightgrey;
+}
+
+
+#form {
+    margin-left: 8%;
+    margin-top: 5%;
+    width: 40%;
+    display: block;
+
+}
+
+#form input {
+    margin-right: 5px;
+    height: 30px;
+}
+
+#drape{
+    margin-left: 19%;
+}

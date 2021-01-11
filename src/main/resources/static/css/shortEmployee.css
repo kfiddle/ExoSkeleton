@@ -8,7 +8,8 @@ body {
     margin-left: 8%;
     margin-top: 5%;
     width: 40%;
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 
 }
 
@@ -17,6 +18,25 @@ body {
     height: 30px;
 }
 
-#drape{
+#drape {
     margin-left: 19%;
 }
+
+#submit {
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: chartreuse;
+    position: absolute;
+    right: 30%;
+    top: 20%;
+    background-color: rgb(40, 31, 97);
+    box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.2),
+    0 20px 40px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 7px;
+    color: rgb(189, 218, 122);
+    padding: 0 2.5em;
+    height: 7%;
+    width: 12%;
+}
+
+

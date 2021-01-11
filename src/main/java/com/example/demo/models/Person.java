@@ -34,6 +34,7 @@ public class Person {
     private int leftThighDiscomfort;
     private int rightKneeDiscomfort;
     private int leftKneeDiscomfort;
+    private String companyName;
 
     @OneToMany
     private Collection<Report> reports;
@@ -138,6 +139,10 @@ public class Person {
         return reports;
     }
 
+    public String getCompanyName(){
+        return companyName;
+    }
+
 
     public Person() {
     }
@@ -158,6 +163,12 @@ public class Person {
         this.lastName = lastName;
         this.company = company;
         this.email = email;
+    }
+
+    public Person(String firstName, String lastName, String companyName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.companyName = companyName;
     }
 
 

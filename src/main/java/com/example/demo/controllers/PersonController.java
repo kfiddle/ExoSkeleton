@@ -84,10 +84,20 @@ public class PersonController {
     @PostMapping("/add-short-person")
     public String addAForm(@RequestBody Person... persons) {
         for (Person person : persons) {
+
             personRepo.save(person);
         }
-        return "redirect:/allPeople";
+        return "redirect:/all-people";
 
     }
 }
 
+//    Company foundCompany = new Company();
+//
+//            if (companyRepo.findByCompanyName(person.getCompanyName()) == null) {
+//                    foundCompany = new Company(person.getCompanyName());
+//                    companyRepo.save(foundCompany);
+//                    } else {
+//                    foundCompany = new Company(person.getCompanyName());
+//                    }
+//Person personToAdd = new Person(person.getFirstName(), person.getLastName(), person.getCompanyName());

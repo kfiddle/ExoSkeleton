@@ -1,4 +1,10 @@
 const form = document.getElementById("form");
+
+const firstNames = [];
+const lastNames = [];
+const companies = [];
+
+const inputs = [firstNames, lastNames, companies];
 const namePlaceHolders = ["First Name", "Last Name", "company"];
 const nameAttributes = ["firstName", "lastName", "company"];
 const drape = document.getElementById("drape");
@@ -10,7 +16,17 @@ let deltaY;
 
 
 loadForm();
-loadForm();
+
+
+class Person {
+    constructor(firstName, lastName, company) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.company = company;
+    }
+
+}
+
 
 function loadForm() {
     for (let i = 0; i < namePlaceHolders.length; i++) {
@@ -19,6 +35,7 @@ function loadForm() {
         input.setAttribute('placeholder', namePlaceHolders[i]);
         input.setAttribute('type', 'text');
         input.setAttribute('name', nameAttributes[i]);
+        inputs[i].push(input);
         form.appendChild(input);
     }
 }
@@ -50,7 +67,40 @@ drape.addEventListener('mousemove', function (x) {
     }
 });
 
-// submit.addEventListener('click', ()=> {
-//
-//
-// })
+submit.addEventListener('click', () => {
+    let formData = {
+        firstName: "joey",
+        lastName: "jablonski"
+    }
+    $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/add-short-person",
+            data: JSON.stringify(formData),
+            dataType: 'json'
+        }
+    )
+});
+
+
+// submit.addEventListener('click', () => {
+//     for (let i = 0; i < inputs[i].length; i++) {
+//         if (inputs[0][i].value !== "" && inputs[1][i].value !== "" && inputs[2][i].value !== "") {
+//             let formData = {
+//                 firstName: inputs[0][i].value,
+//                 lastName: inputs[1][i].value,
+//                 company: inputs[2][i].value
+//             }
+//             $.ajax({
+//                     type: "POST",
+//                     contentType: "application/json",
+//                     url: "/add-short-person",
+//                     data: JSON.stringify(formData),
+//                     dataType: 'json'
+//                 }
+//             )
+//         }
+//     }
+// });
+
+

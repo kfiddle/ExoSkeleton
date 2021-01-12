@@ -1,12 +1,13 @@
 const form = document.getElementById("form");
+const input = document.createElement("input");
 
 const firstNames = [];
 const lastNames = [];
 const companies = [];
 
 const inputs = [firstNames, lastNames, companies];
-const namePlaceHolders = ["First Name", "Last Name", "company"];
-const nameAttributes = ["firstName", "lastName", "company"];
+const namePlaceHolders = ["First Name"];
+const nameAttributes = ["firstName"];
 const drape = document.getElementById("drape");
 const submit = document.getElementById('submit');
 
@@ -30,12 +31,16 @@ class Person {
 
 function loadForm() {
     for (let i = 0; i < namePlaceHolders.length; i++) {
-        let input = document.createElement("input");
-        input.setAttribute('id', nameAttributes[i]);
-        input.setAttribute('placeholder', namePlaceHolders[i]);
+        // let input = document.createElement("input");
+        // input.setAttribute('id', nameAttributes[i]);
+        // input.setAttribute('placeholder', namePlaceHolders[i]);
+        // input.setAttribute('type', 'text');
+        // input.setAttribute('name', nameAttributes[i]);
+        // inputs[i].push(input);
+
+        input.setAttribute('placeholder', 'first name only');
         input.setAttribute('type', 'text');
-        input.setAttribute('name', nameAttributes[i]);
-        inputs[i].push(input);
+        input.setAttribute('name', 'firstName');
         form.appendChild(input);
     }
 }
@@ -67,10 +72,12 @@ drape.addEventListener('mousemove', function (x) {
     }
 });
 
-submit.addEventListener('click', () => {
+submit.addEventListener('click', submission);
+
+function submission() {
     let formData = {
-        firstName: "joey",
-        lastName: "jablonski"
+        firstName: "billy",
+        lastName: "bob"
     }
     $.ajax({
             type: "POST",
@@ -80,7 +87,8 @@ submit.addEventListener('click', () => {
             dataType: 'json'
         }
     )
-});
+
+};
 
 
 // submit.addEventListener('click', () => {

@@ -81,15 +81,12 @@ public class PersonController {
         return "allPeople";
     }
 
-    @PostMapping("/add-short-person")
-    public String addAForm(@RequestBody Person... persons) {
-        for (Person person : persons) {
-
-            personRepo.save(person);
-        }
-        return "redirect:/all-people";
-
-    }
+//    @PostMapping("/add-short-person")
+//    public String addAForm(@RequestParam String firstName, String lastName) {
+//        Person personToAdd = new Person(firstName, lastName);
+//        personRepo.save(personToAdd);
+//        return "redirect:/all-people";
+//    }
 }
 
 //    Company foundCompany = new Company();
